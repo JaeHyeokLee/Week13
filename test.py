@@ -41,6 +41,9 @@ layer_output = get_layer_output([x_test])
 #Test Data Set의 55번째, 69번째, 71번째 데이터의 Label 의 0이고
 #57, 74, 89번째 Label이 1이므로 이에 해당하는 데이터만 리스트에 저장하겠습니다.
 
+
+if os.path.exists('./Feature_Map') == False:
+    os.mkdir('./Feature_Map')
 sample_list = [55, 69, 71, 57, 74, 89]
 
 for i in sample_list:
@@ -48,7 +51,7 @@ for i in sample_list:
     for filter_index in range(output_shape[2]):
         fig, ax = plt.subplots()
         ax.imshow(np.array(layer_output[0][i,:,:,filter_index]), cmap = 'gray')
-        plt.savefig('[' + str(y_test[i]) +  '_' + str(i) + '_' + str(filter_index) + '].png')
+        plt.savefig('./Feature_Map/[' + str(y_test[i]) +  '_' + str(i) + '_' + str(filter_index + 1) + '].png')
         # flush
         plt.cla()
         plt.clf()
